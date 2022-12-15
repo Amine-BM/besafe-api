@@ -50,6 +50,8 @@ Route::post('adresse/delete', [AdresseController::class, 'delete'])->middleware(
 
 //get
 
+Route::get('/');
+
 Route::get('alertvs', [AlertVController::class, 'alertvs'])->middleware('jwtAuth');
 Route::get('alertvvs', [AlertVVController::class, 'alertvvs'])->middleware('jwtAuth');
 Route::get('alertvps', [AlertVPController::class, 'alertvps'])->middleware('jwtAuth');
