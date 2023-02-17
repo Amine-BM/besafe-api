@@ -3,26 +3,26 @@
 
 
 
-User "1" <|-- "." AlerteBeSafe
-TypeAlerte "1" <|-- "*" AlerteBeSafe
-Adresse "1" <|-- "*" AlerteBeSafe
+User "1" <-- "." AlerteBeSafe
+TypeAlerte "1" <-- "*" AlerteBeSafe
+Adresse "1" <-- "*" AlerteBeSafe
 
-Departement "1" <|-- "1..*" Ville
-Ville "1" <|-- "*" AlerteGouvernementale
+Departement "1" <-- "1..*" Ville
+Ville "1" <-- "*" AlerteGouvernementale
 
-Route --|> AlerteBeSafeController
-Route --|> AuthUserController
-Route --|> AlerteGouvernementaleController
+Route --> AlerteBeSafeController
+Route --> AuthUserController
+Route --> AlerteGouvernementaleController
 
-AlerteBeSafeController --|> Adresse 
-AlerteBeSafeController --|> AlerteBeSafe
-AlerteBeSafeController --|> Ville  
-AlerteBeSafeController --|> User 
+AlerteBeSafeController --> Adresse 
+AlerteBeSafeController --> AlerteBeSafe
+AlerteBeSafeController --> Ville  
+AlerteBeSafeController --> User 
 
-AlerteGouvernementaleController --|> Ville  
-AlerteGouvernementaleController --|> AlerteGouvernementale 
+AlerteGouvernementaleController --> Ville  
+AlerteGouvernementaleController --> AlerteGouvernementale 
 
-AuthUserController --|> User
+AuthUserController --> User
 
 class User {
     - id : int
