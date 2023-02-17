@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('positions', function (Blueprint $table) {
-            $table->bigIncrements('idPosition');
-            $table->double('Latitude');
-            $table->double('Longitude');
-
-            $table->unsignedBigInteger('refAdresse');
-            $table->foreign('refAdresse')->references('idAdresse')->on('adresses');
+        Schema::create('type_alertes', function (Blueprint $table) {
+            $table->string('libelle')->primary();
         });
     }
 
@@ -30,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('positions');
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('type_alertes');
+        Schema::enableForeignKeyConstraints();
     }
 };

@@ -13,15 +13,13 @@ class AdresseController extends Controller
     {
         try {
             $adresse = new Adresse();
-            $adresse->Numero = $request->Numero;
-            $adresse->Rue = $request->Rue;
-            $adresse->RefVille = $request->RefVille;
+            $adresse->libelle = $request->libelle;
+            $adresse->code_ville = $request->code_ville;
 
             $adresse->save();
             return response()->json([
                 'success' => true,
-                'message' => 'valie alertv',
-                'alertv' => $adresse
+                'message' => 'adresse',
             ]);
         } catch (Exception $e) {
             return response()->json([

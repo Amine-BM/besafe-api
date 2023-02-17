@@ -19,13 +19,17 @@ class AuthController extends Controller
         if (!$token = auth()->attempt($creds)) {
             return response()->json([
                 'success' => false,
-                'message' => 'invalid credintials'
+                'message' => 'invalid credintials '
             ]);
         }
+        $user = Auth::user();
         return response()->json([
             'success' => true,
+            'message' => 'user identifie',
             'token' => $token,
-            'user' => Auth::user()
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
         ]);
     }
     public function register(Request $request)

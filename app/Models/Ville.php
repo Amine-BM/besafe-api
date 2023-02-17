@@ -10,10 +10,12 @@ use App\Models\Adresse;
 class Ville extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'idVille';
+    protected $primaryKey = 'id';
+    public $timestamps = false;
 
     protected $fillabel = [
-        'NomVille'
+        'libelle',
+        'code_departement'
     ];
 
     public function departement()
@@ -23,6 +25,6 @@ class Ville extends Model
 
     public function adresses()
     {
-        return $this->hasMany(Adresse::class, 'refVille', 'idVille');
+        return $this->hasMany(Adresse::class, 'id_ville', 'id');
     }
 }

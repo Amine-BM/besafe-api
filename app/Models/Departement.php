@@ -11,17 +11,17 @@ class Departement extends Model
 {
     use HasFactory;
     protected $fillabel = [
-        'NomDepartement'
+        'libelle'
     ];
-    protected $primaryKey = 'idDepartement';
+    protected $primaryKey = 'code';
 
     public function villes()
     {
-        return $this->hasMany(Ville::class, 'refDepartement', 'idDepartement');
+        return $this->hasMany(Ville::class, 'code_departement', 'code');
     }
 
     public function alertesGouv()
     {
-        return $this->hasMany(AlerteGouv::class, 'refDepartement', 'idDepartement');
+        return $this->hasMany(AlerteGouv::class,'code_departement', 'code');
     }
 }

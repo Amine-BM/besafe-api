@@ -20,10 +20,14 @@ class AlertVController extends Controller
 
             $alertv->save();
             $alertv->user();
+
             return response()->json([
                 'success' => true,
-                'message' => 'valie alertv',
-                'alertv' => $alertv
+                'message' => 'valide alertv',
+                'RefUser' => $alertv->RefUser,
+                'RefPosition' => $alertv->RefPosition,
+                'nivDanger' => $alertv->nivDanger,
+                'idAlerteV' => $alertv->idAlerteV,
             ]);
         } catch (Exception $e) {
             return response()->json([

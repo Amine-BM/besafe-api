@@ -14,12 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('adresses', function (Blueprint $table) {
-            $table->bigIncrements('idAdresse');
-            $table->integer('Numero');
-            $table->string('Rue');
+            $table->bigIncrements('id');
+            $table->string('libelle');
 
-            $table->unsignedBigInteger('refVille');
-            $table->foreign('refVille')->references('idVille')->on('villes');
+            $table->unsignedBigInteger('id_ville');
+            $table->foreign('id_ville')->references('id')->on('villes');
         });
     }
 
@@ -30,6 +29,8 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('adresses');
+        Schema::enableForeignKeyConstraints();
     }
 };

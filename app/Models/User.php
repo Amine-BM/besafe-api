@@ -56,18 +56,8 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    public function alertvs()
+    public function alertes()
     {
-        return $this->hasMany(Alertv::class, 'refUser', 'idUser');
-    }
-
-    public function alertvvs()
-    {
-        return $this->hasMany(Alertv::class, 'refUser', 'idUser');
-    }
-
-    public function alertvps()
-    {
-        return $this->hasMany(Alertv::class, 'refUser', 'idUser');
+        return $this->hasMany(AlerteBeSafe::class, 'id_user', 'id');
     }
 }

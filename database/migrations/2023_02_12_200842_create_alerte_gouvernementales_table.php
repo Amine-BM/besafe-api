@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('villes', function (Blueprint $table) {
+        Schema::create('alerte_gouvernementales', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('libelle');
+            $table->string('type_alerte');
 
-            $table->string('code_departement');
-            $table->foreign('code_departement')->references('code')->on('departements');
+            $table->unsignedBigInteger('id_ville');
+            $table->foreign('id_ville')->references('id')->on('villes');
+
+            $table->timestamps();
         });
     }
 
@@ -29,8 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('villes');
-        Schema::enableForeignKeyConstraints();
+        Schema::dropIfExists('alerte_gouvernementales');
     }
 };
