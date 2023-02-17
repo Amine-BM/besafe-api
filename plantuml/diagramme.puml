@@ -1,0 +1,99 @@
+@startuml diagramme
+'https://plantuml.com/class-diagram
+
+
+
+User "1" <|-- "." AlerteBeSafe
+TypeAlerte "1" <|-- "*" AlerteBeSafe
+Adresse "1" <|-- "*" AlerteBeSafe
+
+Departement "1" <|-- "1..*" Ville
+Ville "1" <|-- "*" AlerteGouvernementale
+
+Route --|> AlerteBeSafeController
+Route --|> AuthUserController
+Route --|> AlerteGouvernementaleController
+
+AlerteBeSafeController --|> Adresse 
+AlerteBeSafeController --|> AlerteBeSafe
+AlerteBeSafeController --|> Ville  
+AlerteBeSafeController --|> User 
+
+AlerteGouvernementaleController --|> Ville  
+AlerteGouvernementaleController --|> AlerteGouvernementale 
+
+AuthUserController --|> User
+
+class User {
+    - id : int
+    - name : String
+    - email : String
+    - password : String
+    - email_verified_at: String
+    - remember_token : String
+    - created_at : Date 
+    - updated_at: Date
+    + getJWTIdentifier()
+    + alertes()
+}
+
+class TypeAlerte {
+    - libelle : String
+
+}
+
+class Departement {
+    - code : String
+    - libelle : String
+}
+
+class Ville {
+    - id : int
+    - libelle : String
+    - code_departement : String
+}
+
+class Adresse {
+    - id : int
+    - libelle : String
+    - id_ville : int
+}
+
+class AlerteBeSafe {
+    - id : int
+    - libelle : String
+    - type_alerte : String
+    - niveau_danger : int
+    - id_adresse : int
+    - id_user : int
+}
+
+class AlerteGouvernementale {
+    - id : int
+    - libelle : String
+    - type_alerte : String
+    - id_ville : int
+}
+
+class AlerteBeSafeController {
+    + create()
+    + alertes()
+    + alertesUser()
+    + alerteDepartement()
+    + delete()
+}
+
+class AlerteGouvernementaleController {
+    + create()
+    + alertesGouv()
+    + alerteGouvDepartement()
+}
+
+class AuthUserController {
+    + register()
+    + login()
+    + logout()
+}
+
+
+@enduml
