@@ -20,7 +20,7 @@ class Ville extends Model
 
     public function departement()
     {
-        return $this->belongsTo(Departement::class);
+        return $this->belongsTo(Departement::class, 'code_departement', 'code');
     }
 
     public function adresses()

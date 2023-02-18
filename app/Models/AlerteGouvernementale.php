@@ -16,4 +16,9 @@ class AlerteGouvernementale extends Model
         'type_alerte',
         'id_ville',
     ];
+
+    public function ville()
+    {
+        return $this->belongsTo(Ville::class, 'id_ville', 'id');
+    }
 }

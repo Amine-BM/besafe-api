@@ -112,4 +112,29 @@ class AlerteBeSafeController extends Controller
             'alertes' => $alertesCustom
         ]);
     }
+
+    public function alertesParDepartement(Request $request)
+    {
+        $codeDepartement = $request->code_departement;
+        $alertesDepartementDB = AlerteBeSafe::whereHas('adresse.ville.departement', function ($query) use ($codeDepartement) {
+            $query->where('code', '=', $codeDepartement);
+        })->get();
+        $alerteCustom = [];
+        $alertesCustom = [];
+        foreach ($alertesDepartementDB as $alerteDepartementDB) {
+            $alerteCustom['id'] = $alerteDepartementDB->id;
+            $alerteCustom['idUser'] = $alerteDepartementDB->id_user;
+            $alerteCustom['adresse'] = $alerteDepartementDB->adresse;
+            $alerteCustom['typeAlerte'] = $alerteDepartementDB->type_alerte;
+            $alerteCustom['nivDanger'] = $alerteDepartementDB->niveau_danger;
+            $alerteCustom['libelle'] = $alerteDepartementDB->libelle;
+            array_push($alertesCustom, $alerteCustom);
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'alertes BeSafe pour user récupérées',
+            'codeDepartement' => $codeDepartement,
+            'alertes' => $alertesCustom
+        ]);
+    }
 }

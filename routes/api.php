@@ -31,4 +31,6 @@ Route::post('alerte-gouvernementale/create', [AlerteGouvController::class, 'crea
 //get
 Route::get('alertes', [AlerteBeSafeController::class, 'alertes'])->middleware('jwtAuth');
 Route::get('alertes/user', [AlerteBeSafeController::class, 'alertesUser'])->middleware('jwtAuth');
-Route::get('alerte-gouvernementale', [AlerteGouvController::class, 'alerteGouvs'])->middleware('jwtAuth');
+Route::get('alertes/departement', [AlerteBeSafeController::class, 'alertesParDepartement'])->middleware('jwtAuth');
+
+Route::get('alertes-gouvernementale/departement', [AlerteGouvController::class, 'alertesGouvParDepartement'])->middleware('jwtAuth');
